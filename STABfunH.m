@@ -1,14 +1,21 @@
 function [Intdnsfun] = STABfunH(a1, m1, e1, ms, Imin, Imax)
-% Description: The following function returns the integral of the 
-% probability density function for the AMD Hill Stability criteria, given 
-% the main orbital elements of the known exoplanet. 
+% Description: The following function returns the conditional probability
+% for the Hill AMD stability criteria as function of the test planet's 
+% semi-major axis and mass, given the main orbital
+% elements of the known exoplanet. 
 
-% Input:  - Orbital Elements: Known semimajor axis (a1) in [AU], planet
+% Input: - Orbital Elements: Known semimajor axis (a1) in [AU], planet
 %          mass (m1) in [Mjup], eccentricity (e1) and star mass (ms) in 
 %          [Mjup]
-%         - Imin & Imax: Range of values for system's inclination
 
-% Output: - dnsfun: PDF function handle
+%        - Imin & Imax: Range of values for system's inclination
+
+% Output: - dnsfun: conditional probability function handle
+
+% References:
+
+% - [1] Petit, A. C., Laskar, J., and Boue, G. (2018). Hill stability in the amd framework. Astronomy & Astrophysics,
+%       617:A93.
 
 G = 2.8245e-07 * (365.256 ^ 2);        % Gravitational constant [AU^3 / (JupMass * years^2)]
 mu = G * ms;                           % System's gravitational parameter

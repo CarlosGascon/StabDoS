@@ -1,13 +1,15 @@
 function [m] = MfromR(Rp)
 % Description: The following function estimates the planetary mass given its
-% radius, using a modification of the FORECASTER best fit(Chen & Kipping 2016). 
+% radius, using a modification of the FORECASTER best fit. 
 
-% Output: - Rp: Array of planetary radius (Earth Radius)
+% Input: - Rp: Array of planetary radius [Rearth]
 
-% Input:  - m: Array of estimated planetary masses (Jupiter Masses)
+% Output:  - m: Array of estimated planetary masses [Mjup]
 
-% Examples:
 % References:
+
+% - [1] Chen, J. and Kipping, D. (2016). Probabilistic forecasting of the masses and radii of other worlds. The Astrophysical
+%       Journal, 834(1):17.
 
 Mearth = 5.9723e24;       % Earth Mass [kg]
 Mjup = 1.89819 * 10^27;   % Jupiter Mass [kg]

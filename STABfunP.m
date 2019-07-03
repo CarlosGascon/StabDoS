@@ -1,20 +1,27 @@
 function [dnsfun] = STABfunP(a1, m1, e1, ms, Imin, Imax)
-% Description: The following function returns the probability density
-% function for the AMD Hill Stability criteria, given the main orbital
+% Description: The following function returns the conditional probability
+% for Petrovich's stability criteria as function of the test planet's 
+% semi-major axis and mass, given the main orbital
 % elements of the known exoplanet. 
 
 % Input: - Orbital Elements: Known semimajor axis (a1) in [AU], planet
 %          mass (m1) in [Mjup], eccentricity (e1) and star mass (ms) in 
 %          [Mjup]
+
 %        - Imin & Imax: Range of values for system's inclination
 
-% Output: - dnsfun: PDF function handle
+% Output: - dnsfun: conditional probability function handle
+
+% References: 
+
+% - [1] Petrovich, C. (2015). The stability and fates of hierarchical two-planets systems. The Astrophysical Journal,
+%       808(2):120.
 
 G = 2.8247664e-07 * (365.2422 ^ 2);   % Gravitational constant [AU^3 / (JupMass * years^2)]
-sig = 0.18;                      % Rayleigh distribution parameter
+sig = 0.18;                           % Rayleigh distribution parameter
 
-Qk = a1 * (1 + e1);              % Known planet's apocenter
-qk = a1 * (1 - e1);              % Known planet's pericenter
+Qk = a1 * (1 + e1);                   % Known planet's apocenter
+qk = a1 * (1 - e1);                   % Known planet's pericenter
 
 rup = @(a)  (qk ./ a) .* (a <= a1) + (a ./ Qk) .* (a > a1);          % Maximum r value and upper limit
 rmin = @(a) (qk ./ (2 .* a)) .* (a <= a1) + 0 .* (a > a1);           % Minimum r value

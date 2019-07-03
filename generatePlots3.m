@@ -3,7 +3,6 @@ function [] = generatePlots3(avect, Rvect, GStabP, GStabH, GStabG, GOcc, GDoS, G
 apoints = (avect(2 : end) + avect(1 : end - 1)) ./ 2 ;
 Rpoints = (Rvect(2 : end) + Rvect(1 : end - 1)) ./ 2 ;
 
-
 a1 = Target.a;
 R1 = RfromM(Target.pmass);
 
