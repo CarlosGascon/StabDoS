@@ -7,6 +7,14 @@
 % The depth-of-search grids have been previously calculated using Garrett's 
 % publicly available code at https://github.com/dgarrett622/DoS.
 
+% Use Instructions: 
+% 1. Define TargetList and Initialize grid size
+% 2. For computing (a, m) analytic stability maps run Section: Compute (a, m) Stability Grids
+% 3. For constructing intersection grids in the (a, R) space and perform
+% systems prioritization: 
+%    - First Run Section: Compute (a, R) Stability Grids and Occurrence Grids
+%    - Then Run Section: Import Data and Convolve Grids
+
 % References: 
 
 % - [1] Garrett, D., Savransky, D., and Macintosh, B. (2017). A simple depth-of-search metric for exoplanet imaging
@@ -155,5 +163,5 @@ end
 
 Targetsmat = cell2mat(Targets);
 distvect = [Targetsmat.dist];
-Res2 = table(TargetList, distvect', StabDoSP', StabCompP', StabDoSG' , StabCompG', StabDoSH' , StabCompH');  
+Res = table(TargetList, distvect', StabDoSP', StabCompP', StabDoSG' , StabCompG', StabDoSH' , StabCompH');  % Results are stored in Res.mat
 %save('Res', 'Res')
