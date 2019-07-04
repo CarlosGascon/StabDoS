@@ -7,9 +7,6 @@
 % The depth-of-search grids have been previously calculated using Garrett's 
 % publicly available code at https://github.com/dgarrett622/DoS.
 
-% Use Instructions: 
-
-
 % References: 
 
 % - [1] Garrett, D., Savransky, D., and Macintosh, B. (2017). A simple depth-of-search metric for exoplanet imaging
@@ -32,7 +29,7 @@ clear all; close all; clc;
 
 % TargetList struct must be defined as : {'System Name', 'planet letter'; 'System Name', 'planet letter' ...}
 
-TargetList = {'GJ 411' 'b'};
+TargetList = {'HD 154345' 'b'};
 %TargetList = {'Proxima Cen' 'b';'GJ 411' 'b';'eps Eri' 'b';'Ross 128' 'b';'GJ 674' 'b';'GJ 687' 'b';'HD 180617' 'b';'GJ 625' 'b';'Gl 686' 'b';'GJ 849' 'b';'GJ 433' 'b';'HD 102365' 'b';'HD 285968' 'b';'GJ 436' 'b';'GJ 1265' 'b';'HD 62509' 'b';'GJ 649' 'b';'GJ 536' 'b';'HD 147379' 'b';'GJ 86' 'b';'HD 3651' 'b';'HD 85512' 'b';'GJ 96' 'b';'GJ 179' 'b';'HD 147513' 'b';'HD 211970' 'b';'gam Cep' 'b';'GJ 685' 'b';'HIP 79431' 'b';'Gl 378' 'b';'51 Peg' 'b';'tau Boo' 'b';'HD 177565' 'b';'GJ 3942' 'b';'HR 810' 'b';'HD 10647' 'b';'GJ 3021' 'b';'70 Vir' 'b';'14 Her' 'b';'HD 99492' 'b';'HD 27442' 'b';'HD 154345' 'b';'HD 87883' 'b';'HD 192263' 'b';'7 CMa' 'b';'alf Ari' 'b';'HD 114613' 'b';'HD 104067' 'b';'alf Tau' 'b';'GJ 328' 'b';'HD 33564' 'b';'16 Cyg B' 'b';'HD 210277' 'b';'HD 90156' 'b';'HD 4308' 'b';'psi 1 Dra B' 'b';'HD 19994' 'b';'HD 39855' 'b';'HIP 12961' 'b';'HIP 70849' 'b';'HD 156668' 'b';'HD 42618' 'b';'HD 16417' 'b';'HD 128356' 'b';'HD 30562' 'b';'HD 103949' 'b';'HD 216437' 'b';'BD-11 4672' 'b';'HD 179949' 'b';'HD 114386' 'b';'HD 125595' 'b';'HD 164595' 'b';'HD 150706' 'b';'HD 93083' 'b';'HD 204941' 'b';'HD 218566' 'b';'HD 111232' 'b';'HD 75289' 'b';'HD 21411' 'b';'HD 219077' 'b';'HD 70642' 'b';'HD 102195' 'b';'HD 46375' 'b';'HD 52265' 'b';'HD 101930' 'b';'kap CrB' 'b';'HD 8326' 'b';'HD 162020' 'b';'HD 29021' 'b';'HD 221420' 'b';'HD 50554' 'b';'HD 64114' 'b';'iot Dra' 'b';'HD 130322' 'b';'HD 89307' 'b';'HIP 71135' 'b';'HD 117207' 'b';'HD 98736' 'b';'HD 63765' 'b';'HD 22781' 'b';'mu Leo' 'b';'HD 197037' 'b';'HD 216435' 'b';'HD 10697' 'b';'HIP 35173' 'b';'HD 141937' 'b';'HD 23079' 'b';'HD 85390' 'b';'HD 106515 A' 'b';'HD 40979' 'b';'HD 196885' 'b';'HD 4208' 'b';'HD 142022 A' 'b';'HD 81040' 'b';'BD-17 63' 'b';'HD 45652' 'b';'HD 142415' 'b';'HD 20782' 'b';'HD 7199' 'b';'HD 113337' 'b';'HD 216770' 'b';'HD 42012' 'b';'HD 25015' 'b';'HD 195019' 'b';'HD 63454' 'b';'HD 117618' 'b';'HD 16141' 'b';'HD 114729' 'b';'HD 8673' 'b';'HD 38283' 'b';'HD 32963' 'b';'HD 106252' 'b';'gam 1 Leo' 'b';'HD 89744' 'b';'HD 7449' 'b';'bet UMi' 'b';'HD 108147' 'b';'HD 164604' 'b';'HD 28185' 'b';'HD 102117' 'b';'HD 196067' 'b';'HD 114762' 'b';'HD 137388' 'b';'HD 213240' 'b';'HD 83443' 'b';'HD 178911 B' 'b';'HD 103720' 'b';'HD 168746' 'b';'HD 121504' 'b';'HD 4113' 'b';'HD 222582' 'b';'HD 98649' 'b';'HD 210193' 'b';'HD 6434' 'b';'HD 49674' 'b';'HD 13724' 'b';'HD 92987' 'b';'HD 208487' 'b';'91 Aqr' 'b';'HD 17674' 'b';'30 Ari B' 'b';'HD 171238' 'b';'HD 8574' 'b';'HD 285507' 'b';'HD 166724' 'b';'HD 330075' 'b';'HD 70573' 'b';'HD 86226' 'b';'HIP 91258' 'b';'HD 187085' 'b';'HD 77338' 'b';'HD 24040' 'b';'HD 220689' 'b';'HD 45350' 'b';'HD 133131 B' 'b';'HD 13931' 'b';'HD 20868' 'b';'HD 156846' 'b';'HD 181234' 'b';'HD 153950' 'b';'HD 143105' 'b';'HD 220773' 'b';'HD 79498' 'b';'eps Tau' 'b';'HD 108341' 'b';'BD+14 4559' 'b';'HD 107148' 'b';'HD 100777' 'b';'HD 167042' 'b'};
 
 Targets = ImportData(TargetList);            % Import Target Data
@@ -57,7 +54,7 @@ mvect = logspace(log10(MfromR(Rmin)), log10(MfromR(Rmax)), Na);                 
 for k = 1 : length(Targets)                  % Iterate over the number of targets
     
     [MatStabP, MatStabH, MatStabG] = STABmat(avect, mvect, Targets{k});         % Obtain stability matrices for each criterion
-    generatemassplotsep(avect, mvect, MatStabP, MatStabH, MatStabG, Targets{k}) % Generate plots
+    %generatemassplot(avect, mvect, MatStabP, MatStabH, MatStabG, Targets{k})   % Generate plots if desired
    
 end
 %% Compute (a, R) Stability Grids and Occurrence Grids
@@ -125,6 +122,8 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     
     Limits = importdata(['Datalimits/',Targets{k}.system,'limits.mat']);     % Import depth-of-search limits previously calculated
     amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);  % Asign limits for the construction of stability and occurrence grids
+    avect = logspace(log10(amin), log10(amax), Na + 1);                      % Define array of semi-major axis points (logarithmically spaced)
+    Rvect = logspace(log10(Rmin), log10(Rmax), Nr + 1);                      % Define array of planetary radius points (logarithmically spaced) 
     GStabH = importdata(['StabGrids/',Targets{k}.system,'_H.mat']);          % Import Hill stability (a, R) grid
     GStabP = importdata(['StabGrids/',Targets{k}.system,'_P.mat']);          % Import Petrovich stability (a, R) grid
     GStabG = importdata(['StabGrids/',Targets{k}.system,'_G.mat']);          % Import Giuppone stability (a, R) grid
@@ -151,6 +150,7 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     StabCompH(k) = sum(sum(GScompH));              % Calculate target's dynamically Hill stable completeness
     StabCompP(k) = sum(sum(GScompP));              % Calculate target's dynamically Petrovich stable completeness
     StabCompG(k) = sum(sum(GScompG));              % Calculate target's dynamically Giuppone stable completeness
+    %generateintersectionplots(avect, Rvect, GStabP, GStabH, GStabG, GOcc, GDoS, GSDoSP, GSDoSH, GSDoSG, Targets{k})  % Generate plots if desired
 end
 
 Targetsmat = cell2mat(Targets);

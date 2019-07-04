@@ -1,5 +1,6 @@
-function [] = generatemassplotsep(avect, mvect, MatStabP, MatStabH, MatStabG, Target)
+function [] = generatemassplot(avect, mvect, MatStabP, MatStabH, MatStabG, Target)
 
+% Function for generating plots
 
 a1 = Target.a;
 m1 = Target.pmass;
@@ -27,11 +28,10 @@ y = ylabel(cbar, 'Probability of Stability','Interpreter','latex', 'Rotation', 2
 y.Position(1) = y.Position(1) + 1.2;
 hold on
 
-%plot3([log10(2.5) log10(2.5)], log10([mvect(1) mvect(end)]), [0 0], '--w', 'Linewidth', 1.2);
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabH, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
-print(['Figures/', Target.system, '_massHanalytic'], '-depsc')
+%print(['Figures/', Target.system, '_massHanalytic'], '-depsc')
 
 figure()
 
@@ -55,12 +55,11 @@ y = ylabel(cbar, 'Probability of Stability','Interpreter','latex', 'Rotation', 2
 y.Position(1) = y.Position(1) + 1.2;
 hold on
 
-%plot3([log10(2.5) log10(2.5)], log10([mvect(1) mvect(end)]), [0 0], '--w', 'Linewidth', 1.2);
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabP, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
 
-print(['Figures/', Target.system, '_massPanalytic'], '-depsc')
+%print(['Figures/', Target.system, '_massPanalytic'], '-depsc')
 figure()
 
 imagesc(log10([avect(1) avect(end)]), log10([mvect(1) mvect(end)]), MatStabG)
@@ -83,11 +82,10 @@ y = ylabel(cbar, 'Probability of Stability','Interpreter','latex', 'Rotation', 2
 y.Position(1) = y.Position(1) + 1.2;
 hold on
 
-%plot3([log10(2.5) log10(2.5)], log10([mvect(1) mvect(end)]), [0 0], '--w', 'Linewidth', 1.2);
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabG, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
-print(['Figures/', Target.system, '_massGanalytic'], '-depsc')
+%print(['Figures/', Target.system, '_massGanalytic'], '-depsc')
 
 end
 
