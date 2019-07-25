@@ -29,24 +29,21 @@ for i = 1 : length(P)
     Exoplanet.plet = P(i).pl_letter;                % Read planet letter
     if  ~isnan(P(i).pl_orbsmax)                     % Check semimajor axis existence
         Exoplanet.a = P(i).pl_orbsmax;              % Read semimajor axis [AU]
-        
-        if ~isnan(P(i).pl_orbeccen)                 % Check eccentricity existence
-            Exoplanet.e = P(i).pl_orbeccen;         % Read eccentricity
-         
-            if ~isnan(P(i).st_dist)             % Check star distance existence
-                Exoplanet.dist = P(i).st_dist;  % Read star distance [pc]
+        if ~isnan(P(i).st_dist)             % Check star distance existence
+            Exoplanet.dist = P(i).st_dist;  % Read star distance [pc]
 
-                if ~isnan(P(i).pl_bmassj)                   % Check planet mass existence
-                    Exoplanet.pmass = P(i).pl_bmassj;       % Read planet mass in Jupiter Masses
-                    Exoplanet.type = P(i).pl_bmassprov;     % Read planet type (Mass or Msini)
-                    Exoplanet.per = P(i).pl_orbper;         % Read Orbital Period [days]
-                    Exoplanet.I = P(i).pl_orbincl * d2r;            % Read orbit inclination [deg] and convert to rad
-                    Exoplanet.om = P(i).pl_orblper * d2r;           % Read longitude of periastron [deg] and convert to rad
-                    Exoplanets = [Exoplanets, Exoplanet];   % Add current exoplanet to array
-                end
+            if ~isnan(P(i).pl_bmassj)                   % Check planet mass existence
+                Exoplanet.pmass = P(i).pl_bmassj;       % Read planet mass in Jupiter Masses
+                Exoplanet.e = P(i).pl_orbeccen;         % Read eccentricity
+                Exoplanet.type = P(i).pl_bmassprov;     % Read planet type (Mass or Msini)
+                Exoplanet.per = P(i).pl_orbper;         % Read Orbital Period [days]
+                Exoplanet.I = P(i).pl_orbincl * d2r;            % Read orbit inclination [deg] and convert to rad
+                Exoplanet.om = P(i).pl_orblper * d2r;           % Read longitude of periastron [deg] and convert to rad
+                Exoplanets = [Exoplanets, Exoplanet];   % Add current exoplanet to array
             end
         end
+
     end
     
 end
-save('Exoplanets', 'Exoplanets');
+save('Exoplanets2', 'Exoplanets');

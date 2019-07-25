@@ -42,7 +42,9 @@ for i  = 1 : m                              % Iterate over every system in Targe
             Exoplanet.per = 2 * pi * sqrt((Exoplanet.a ^ 3) ... 
                             / (G * (Exoplanet.smass + Exoplanet.pmass))) ;   % Calculate orbital period 
         end
-        
+        if(isnan(Exoplanet.e))
+            Exoplanet.e = 0;
+        end
         Exoplanet.RAAN = 2 * pi * rand;                         % Set Longitude of ascending node to 0
         Exoplanet.M0 = 2 * pi * rand;                           % Set Initial Mean Anomaly to 0
         Exoplanet.T = 0;                                        % Set time to 0
