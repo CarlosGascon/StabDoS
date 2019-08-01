@@ -11,7 +11,7 @@
 % 1. Define TargetList and Initialize grid size
 % 2. For computing (a, m) analytic stability maps run Section: Compute (a, m) Stability Grids
 % 3. For constructing intersection grids in the (a, R) space and perform
-% systems prioritization: 
+%    systems prioritization: 
 %    - First Run Section: Compute (a, R) Stability Grids and Occurrence Grids
 %    - Then Run Section: Import Data and Convolve Grids
 
@@ -37,17 +37,16 @@ clear all; close all; clc;
 
 % TargetList struct must be defined as : {'System Name', 'planet letter'; 'System Name', 'planet letter' ...}
 
-%TargetList = {'HD 154345' 'b'};
-%TargetList = {'Proxima Cen' 'b';'GJ 411' 'b';'eps Eri' 'b';'Ross 128' 'b';'GJ 674' 'b';'GJ 687' 'b';'HD 180617' 'b';'GJ 625' 'b';'Gl 686' 'b';'GJ 849' 'b';'GJ 433' 'b';'HD 102365' 'b';'HD 285968' 'b';'GJ 436' 'b';'GJ 1265' 'b';'HD 62509' 'b';'GJ 649' 'b';'GJ 536' 'b';'HD 147379' 'b';'GJ 86' 'b';'HD 3651' 'b';'HD 85512' 'b';'GJ 96' 'b';'GJ 179' 'b';'HD 147513' 'b';'HD 211970' 'b';'gam Cep' 'b';'GJ 685' 'b';'HIP 79431' 'b';'Gl 378' 'b';'51 Peg' 'b';'tau Boo' 'b';'HD 177565' 'b';'GJ 3942' 'b';'HR 810' 'b';'HD 10647' 'b';'GJ 3021' 'b';'70 Vir' 'b';'14 Her' 'b';'HD 99492' 'b';'HD 27442' 'b';'HD 154345' 'b';'HD 87883' 'b';'HD 192263' 'b';'7 CMa' 'b';'alf Ari' 'b';'HD 114613' 'b';'HD 104067' 'b';'alf Tau' 'b';'GJ 328' 'b';'HD 33564' 'b';'16 Cyg B' 'b';'HD 210277' 'b';'HD 90156' 'b';'HD 4308' 'b';'psi 1 Dra B' 'b';'HD 19994' 'b';'HD 39855' 'b';'HIP 12961' 'b';'HIP 70849' 'b';'HD 156668' 'b';'HD 42618' 'b';'HD 16417' 'b';'HD 128356' 'b';'HD 30562' 'b';'HD 103949' 'b';'HD 216437' 'b';'BD-11 4672' 'b';'HD 179949' 'b';'HD 114386' 'b';'HD 125595' 'b';'HD 164595' 'b';'HD 150706' 'b';'HD 93083' 'b';'HD 204941' 'b';'HD 218566' 'b';'HD 111232' 'b';'HD 75289' 'b';'HD 21411' 'b';'HD 219077' 'b';'HD 70642' 'b';'HD 102195' 'b';'HD 46375' 'b';'HD 52265' 'b';'HD 101930' 'b';'kap CrB' 'b';'HD 8326' 'b';'HD 162020' 'b';'HD 29021' 'b';'HD 221420' 'b';'HD 50554' 'b';'HD 64114' 'b';'iot Dra' 'b';'HD 130322' 'b';'HD 89307' 'b';'HIP 71135' 'b';'HD 117207' 'b';'HD 98736' 'b';'HD 63765' 'b';'HD 22781' 'b';'mu Leo' 'b';'HD 197037' 'b';'HD 216435' 'b';'HD 10697' 'b';'HIP 35173' 'b';'HD 141937' 'b';'HD 23079' 'b';'HD 85390' 'b';'HD 106515 A' 'b';'HD 40979' 'b';'HD 196885' 'b';'HD 4208' 'b';'HD 142022 A' 'b';'HD 81040' 'b';'BD-17 63' 'b';'HD 45652' 'b';'HD 142415' 'b';'HD 20782' 'b';'HD 7199' 'b';'HD 113337' 'b';'HD 216770' 'b';'HD 42012' 'b';'HD 25015' 'b';'HD 195019' 'b';'HD 63454' 'b';'HD 117618' 'b';'HD 16141' 'b';'HD 114729' 'b';'HD 8673' 'b';'HD 38283' 'b';'HD 32963' 'b';'HD 106252' 'b';'gam 1 Leo' 'b';'HD 89744' 'b';'HD 7449' 'b';'bet UMi' 'b';'HD 108147' 'b';'HD 164604' 'b';'HD 28185' 'b';'HD 102117' 'b';'HD 196067' 'b';'HD 114762' 'b';'HD 137388' 'b';'HD 213240' 'b';'HD 83443' 'b';'HD 178911 B' 'b';'HD 103720' 'b';'HD 168746' 'b';'HD 121504' 'b';'HD 4113' 'b';'HD 222582' 'b';'HD 98649' 'b';'HD 210193' 'b';'HD 6434' 'b';'HD 49674' 'b';'HD 13724' 'b';'HD 92987' 'b';'HD 208487' 'b';'91 Aqr' 'b';'HD 17674' 'b';'30 Ari B' 'b';'HD 171238' 'b';'HD 8574' 'b';'HD 285507' 'b';'HD 166724' 'b';'HD 330075' 'b';'HD 70573' 'b';'HD 86226' 'b';'HIP 91258' 'b';'HD 187085' 'b';'HD 77338' 'b';'HD 24040' 'b';'HD 220689' 'b';'HD 45350' 'b';'HD 133131 B' 'b';'HD 13931' 'b';'HD 20868' 'b';'HD 156846' 'b';'HD 181234' 'b';'HD 153950' 'b';'HD 143105' 'b';'HD 220773' 'b';'HD 79498' 'b';'eps Tau' 'b';'HD 108341' 'b';'BD+14 4559' 'b';'HD 107148' 'b';'HD 100777' 'b';'HD 167042' 'b'; 'GJ 504' 'b';'GU Psc' 'b';'HN Peg' 'b';'HR 2562' 'b'};
-%TargetList = {'GJ 504' 'b';'GU Psc' 'b';'HN Peg' 'b';'HR 2562' 'b'};
-%TargetList = {'WISEP J121756.91+162640.2 A' 'b'; 'VHS J125601.92-125723.9' 'b'; 'DENIS-P J082303.1-491201' 'b'}
-%TargetList = {'2MASS J01225093-2439505' 'b';'2MASS J02192210-3925225' 'b';'CFBDSIR J145829+101343' 'b';'DE CVn' 'b';'DENIS-P J082303.1-491201' 'b';'GJ 1214' 'b';'GJ 3341' 'b';'GJ 3470' 'b';'GJ 3634' 'b';'GJ 3779' 'b';'GJ 4276' 'b';'Gl 49' 'b';'HD 111998' 'b';'LSPM J2116+0234' 'b';'RR Cae' 'b';'VHS J125601.92-125723.9' 'b';'WASP-80' 'b';'WD 0806-661' 'b';'WISEP J121756.91+162640.2 A' 'b'};
-%TargetList = {'2MASS J01225093-2439505' 'b';'2MASS J02192210-3925225' 'b';'CFBDSIR J145829+101343' 'b';'DE CVn' 'b';'GJ 1214' 'b';'GJ 3341' 'b';'GJ 3470' 'b';'GJ 3634' 'b';'GJ 3779' 'b';'GJ 4276' 'b';'Gl 49' 'b';'HD 111998' 'b';'LSPM J2116+0234' 'b';'RR Cae' 'b';'WASP-80' 'b';'WD 0806-661' 'b'};
-TargetList = {'Proxima Cen' 'b';'GJ 411' 'b';'eps Eri' 'b';'Ross 128' 'b';'GJ 674' 'b';'GJ 687' 'b';'HD 180617' 'b';'GJ 625' 'b';'Gl 686' 'b';'GJ 849' 'b';'GJ 433' 'b';'HD 102365' 'b';'HD 285968' 'b';'GJ 436' 'b';'GJ 1265' 'b';'HD 62509' 'b';'GJ 649' 'b';'GJ 536' 'b';'HD 147379' 'b';'GJ 86' 'b';'HD 3651' 'b';'HD 85512' 'b';'GJ 96' 'b';'GJ 179' 'b';'HD 147513' 'b';'HD 211970' 'b';'gam Cep' 'b';'GJ 685' 'b';'HIP 79431' 'b';'Gl 378' 'b';'51 Peg' 'b';'tau Boo' 'b';'HD 177565' 'b';'GJ 3942' 'b';'HR 810' 'b';'HD 10647' 'b';'GJ 3021' 'b';'70 Vir' 'b';'14 Her' 'b';'HD 99492' 'b';'HD 27442' 'b';'HD 154345' 'b';'HD 87883' 'b';'HD 192263' 'b';'7 CMa' 'b';'alf Ari' 'b';'HD 114613' 'b';'HD 104067' 'b';'alf Tau' 'b';'GJ 328' 'b';'HD 33564' 'b';'16 Cyg B' 'b';'HD 210277' 'b';'HD 90156' 'b';'HD 4308' 'b';'psi 1 Dra B' 'b';'HD 19994' 'b';'HD 39855' 'b';'HIP 12961' 'b';'HIP 70849' 'b';'HD 156668' 'b';'HD 42618' 'b';'HD 16417' 'b';'HD 128356' 'b';'HD 30562' 'b';'HD 103949' 'b';'HD 216437' 'b';'BD-11 4672' 'b';'HD 179949' 'b';'HD 114386' 'b';'HD 125595' 'b';'HD 164595' 'b';'HD 150706' 'b';'HD 93083' 'b';'HD 204941' 'b';'HD 218566' 'b';'HD 111232' 'b';'HD 75289' 'b';'HD 21411' 'b';'HD 219077' 'b';'HD 70642' 'b';'HD 102195' 'b';'HD 46375' 'b';'HD 52265' 'b';'HD 101930' 'b';'kap CrB' 'b';'HD 8326' 'b';'HD 162020' 'b';'HD 29021' 'b';'HD 221420' 'b';'HD 50554' 'b';'HD 64114' 'b';'iot Dra' 'b';'HD 130322' 'b';'HD 89307' 'b';'HIP 71135' 'b';'HD 117207' 'b';'HD 98736' 'b';'HD 63765' 'b';'HD 22781' 'b';'mu Leo' 'b';'HD 197037' 'b';'HD 216435' 'b';'HD 10697' 'b';'HIP 35173' 'b';'HD 141937' 'b';'HD 23079' 'b';'HD 85390' 'b';'HD 106515 A' 'b';'HD 40979' 'b';'HD 196885' 'b';'HD 4208' 'b';'HD 142022 A' 'b';'HD 81040' 'b';'BD-17 63' 'b';'HD 45652' 'b';'HD 142415' 'b';'HD 20782' 'b';'HD 7199' 'b';'HD 113337' 'b';'HD 216770' 'b';'HD 42012' 'b';'HD 25015' 'b';'HD 195019' 'b';'HD 63454' 'b';'HD 117618' 'b';'HD 16141' 'b';'HD 114729' 'b';'HD 8673' 'b';'HD 38283' 'b';'HD 32963' 'b';'HD 106252' 'b';'gam 1 Leo' 'b';'HD 89744' 'b';'HD 7449' 'b';'bet UMi' 'b';'HD 108147' 'b';'HD 164604' 'b';'HD 28185' 'b';'HD 102117' 'b';'HD 196067' 'b';'HD 114762' 'b';'HD 137388' 'b';'HD 213240' 'b';'HD 83443' 'b';'HD 178911 B' 'b';'HD 103720' 'b';'HD 168746' 'b';'HD 121504' 'b';'HD 4113' 'b';'HD 222582' 'b';'HD 98649' 'b';'HD 210193' 'b';'HD 6434' 'b';'HD 49674' 'b';'HD 13724' 'b';'HD 92987' 'b';'HD 208487' 'b';'91 Aqr' 'b';'HD 17674' 'b';'30 Ari B' 'b';'HD 171238' 'b';'HD 8574' 'b';'HD 285507' 'b';'HD 166724' 'b';'HD 330075' 'b';'HD 70573' 'b';'HD 86226' 'b';'HIP 91258' 'b';'HD 187085' 'b';'HD 77338' 'b';'HD 24040' 'b';'HD 220689' 'b';'HD 45350' 'b';'HD 133131 B' 'b';'HD 13931' 'b';'HD 20868' 'b';'HD 156846' 'b';'HD 181234' 'b';'HD 153950' 'b';'HD 143105' 'b';'HD 220773' 'b';'HD 79498' 'b';'eps Tau' 'b';'HD 108341' 'b';'BD+14 4559' 'b';'HD 107148' 'b';'HD 100777' 'b';'HD 167042' 'b'; 'GJ 504' 'b';'GU Psc' 'b';'HN Peg' 'b';'HR 2562' 'b'; '2MASS J01225093-2439505' 'b';'2MASS J02192210-3925225' 'b';'CFBDSIR J145829+101343' 'b';'DE CVn' 'b';'DENIS-P J082303.1-491201' 'b';'GJ 1214' 'b';'GJ 3341' 'b';'GJ 3470' 'b';'GJ 3634' 'b';'GJ 3779' 'b';'GJ 4276' 'b';'Gl 49' 'b';'HD 111998' 'b';'LSPM J2116+0234' 'b';'RR Cae' 'b';'VHS J125601.92-125723.9' 'b';'WASP-80' 'b';'WD 0806-661' 'b';'WISEP J121756.91+162640.2 A' 'b'; 'HD 126525' 'b'};
+TargetList = {'HD 154345' 'b'};
+%TargetList = {'Proxima Cen' 'b';'GJ 411' 'b';'eps Eri' 'b';'Ross 128' 'b';'GJ 674' 'b';'GJ 687' 'b';'HD 180617' 'b';'GJ 625' 'b';'Gl 686' 'b';'GJ 849' 'b';'GJ 433' 'b';'HD 102365' 'b';'HD 285968' 'b';'GJ 436' 'b';'GJ 1265' 'b';'HD 62509' 'b';'GJ 649' 'b';'GJ 536' 'b';'HD 147379' 'b';'GJ 86' 'b';'HD 3651' 'b';'HD 85512' 'b';'GJ 96' 'b';'GJ 179' 'b';'HD 147513' 'b';'HD 211970' 'b';'gam Cep' 'b';'GJ 685' 'b';'HIP 79431' 'b';'Gl 378' 'b';'51 Peg' 'b';'tau Boo' 'b';'HD 177565' 'b';'GJ 3942' 'b';'HR 810' 'b';'HD 10647' 'b';'GJ 3021' 'b';'70 Vir' 'b';'14 Her' 'b';'HD 99492' 'b';'HD 27442' 'b';'HD 154345' 'b';'HD 87883' 'b';'HD 192263' 'b';'7 CMa' 'b';'alf Ari' 'b';'HD 114613' 'b';'HD 104067' 'b';'alf Tau' 'b';'GJ 328' 'b';'HD 33564' 'b';'16 Cyg B' 'b';'HD 210277' 'b';'HD 90156' 'b';'HD 4308' 'b';'psi 1 Dra B' 'b';'HD 19994' 'b';'HD 39855' 'b';'HIP 12961' 'b';'HIP 70849' 'b';'HD 156668' 'b';'HD 42618' 'b';'HD 16417' 'b';'HD 128356' 'b';'HD 30562' 'b';'HD 103949' 'b';'HD 216437' 'b';'BD-11 4672' 'b';'HD 179949' 'b';'HD 114386' 'b';'HD 125595' 'b';'HD 164595' 'b';'HD 150706' 'b';'HD 93083' 'b';'HD 204941' 'b';'HD 218566' 'b';'HD 111232' 'b';'HD 75289' 'b';'HD 21411' 'b';'HD 219077' 'b';'HD 70642' 'b';'HD 102195' 'b';'HD 46375' 'b';'HD 52265' 'b';'HD 101930' 'b';'kap CrB' 'b';'HD 8326' 'b';'HD 162020' 'b';'HD 29021' 'b';'HD 221420' 'b';'HD 50554' 'b';'HD 64114' 'b';'iot Dra' 'b';'HD 130322' 'b';'HD 89307' 'b';'HIP 71135' 'b';'HD 117207' 'b';'HD 98736' 'b';'HD 63765' 'b';'HD 22781' 'b';'mu Leo' 'b';'HD 197037' 'b';'HD 216435' 'b';'HD 10697' 'b';'HIP 35173' 'b';'HD 141937' 'b';'HD 23079' 'b';'HD 85390' 'b';'HD 106515 A' 'b';'HD 40979' 'b';'HD 196885' 'b';'HD 4208' 'b';'HD 142022 A' 'b';'HD 81040' 'b';'BD-17 63' 'b';'HD 45652' 'b';'HD 142415' 'b';'HD 20782' 'b';'HD 7199' 'b';'HD 113337' 'b';'HD 216770' 'b';'HD 42012' 'b';'HD 25015' 'b';'HD 195019' 'b';'HD 63454' 'b';'HD 117618' 'b';'HD 16141' 'b';'HD 114729' 'b';'HD 8673' 'b';'HD 38283' 'b';'HD 32963' 'b';'HD 106252' 'b';'gam 1 Leo' 'b';'HD 89744' 'b';'HD 7449' 'b';'bet UMi' 'b';'HD 108147' 'b';'HD 164604' 'b';'HD 28185' 'b';'HD 102117' 'b';'HD 196067' 'b';'HD 114762' 'b';'HD 137388' 'b';'HD 213240' 'b';'HD 83443' 'b';'HD 178911 B' 'b';'HD 103720' 'b';'HD 168746' 'b';'HD 121504' 'b';'HD 4113' 'b';'HD 222582' 'b';'HD 98649' 'b';'HD 210193' 'b';'HD 6434' 'b';'HD 49674' 'b';'HD 13724' 'b';'HD 92987' 'b';'HD 208487' 'b';'91 Aqr' 'b';'HD 17674' 'b';'30 Ari B' 'b';'HD 171238' 'b';'HD 8574' 'b';'HD 285507' 'b';'HD 166724' 'b';'HD 330075' 'b';'HD 70573' 'b';'HD 86226' 'b';'HIP 91258' 'b';'HD 187085' 'b';'HD 77338' 'b';'HD 24040' 'b';'HD 220689' 'b';'HD 45350' 'b';'HD 133131 B' 'b';'HD 13931' 'b';'HD 20868' 'b';'HD 156846' 'b';'HD 181234' 'b';'HD 153950' 'b';'HD 143105' 'b';'HD 220773' 'b';'HD 79498' 'b';'eps Tau' 'b';'HD 108341' 'b';'BD+14 4559' 'b';'HD 107148' 'b';'HD 100777' 'b';'HD 167042' 'b'; 'GJ 504' 'b';'GU Psc' 'b';'HN Peg' 'b';'HR 2562' 'b'; '2MASS J01225093-2439505' 'b';'2MASS J02192210-3925225' 'b';'CFBDSIR J145829+101343' 'b';'DE CVn' 'b';'DENIS-P J082303.1-491201' 'b';'GJ 1214' 'b';'GJ 3341' 'b';'GJ 3470' 'b';'GJ 3634' 'b';'GJ 3779' 'b';'GJ 4276' 'b';'Gl 49' 'b';'HD 111998' 'b';'LSPM J2116+0234' 'b';'RR Cae' 'b';'VHS J125601.92-125723.9' 'b';'WASP-80' 'b';'WD 0806-661' 'b';'WISEP J121756.91+162640.2 A' 'b'; 'HD 126525' 'b'};
 
 Targets = ImportData(TargetList);            % Import Target Data
 
 %% Initialization
+% Section Description: Specify number of points for both (a, m) and (a, R)
+% stability maps. Number of points must coincide with the used when
+% generating the depth-of-search grids. 
+
 Na = 100;                                    % Number semi-major axis of bins
 Nm = 100;                                    % Number of mass bins
 Nr = 100;                                    % Number of radius bins
@@ -62,12 +61,12 @@ amax = 25;                                   % Define maximum semi-major axis in
 Rmin = 4;                                    % Define minimum planetary radius in Earth Radius
 Rmax = 17;                                   % Define maximum planetart radius in Earth Radius
 avect = logspace(log10(amin), log10(amax), Na);                                 % Define array of semi-major axis points (logarithmically spaced)
-mvect = logspace(log10(MfromR(Rmin)), log10(MfromR(Rmax)), Na);                 % Define array of mass points (logarithmically spaced)                
+mvect = logspace(log10(MfromR(Rmin)), log10(MfromR(Rmax)), Nm);                 % Define array of mass points (logarithmically spaced)                
 
 for k = 1 : length(Targets)                  % Iterate over the number of targets
     
     [MatStabP, MatStabH, MatStabG] = STABmat(avect, mvect, Targets{k});         % Obtain stability matrices for each criterion
-    generatemassplot(avect, mvect, MatStabP, MatStabH, MatStabG, Targets{k})   % Generate plots if desired
+    generatemassplot(avect, mvect, MatStabP, MatStabH, MatStabG, Targets{k})    % Generate plots if desired
    
 end
 %% Compute (a, R) Stability Grids and Occurrence Grids
@@ -82,8 +81,9 @@ GOcc = zeros(Nr, Na);                       % Initialize occurrence matrix
 
 for k = 1 : length(Targets)                 % Iterate over the number of targets
     
-    Limits = importdata(['Datalimits/',Targets{k}.system,'limits.mat']);            % Import depth-of-search limits previously calculated
-    amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);         % Asign limits for the construction of stability and occurrence grids
+    %Limits = importdata(['Datalimits/',Targets{k}.system,'limits.mat']);            % Import depth-of-search limits previously calculated
+    %amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);         % Asign limits for the construction of stability and occurrence grids
+    amin = 0.9; amax = 23; Rmin = 2.5; Rmax = 17;
     avect = logspace(log10(amin), log10(amax), Na + 1);                             % Define array of semi-major axis points (logarithmically spaced)
     Rvect = logspace(log10(Rmin), log10(Rmax), Nr + 1);                             % Define array of planetary radius points (logarithmically spaced) 
     mvect = MfromR(Rvect);                                                          % Define corresponding array of mass points (logarithmically spaced)
@@ -101,9 +101,9 @@ for k = 1 : length(Targets)                 % Iterate over the number of targets
         end
     end
      
-    save(['StabGrids/' Targets{k}.system '_H' '.mat'], 'GStabH')                          % Save the stability grids, if desired
-    save(['StabGrids/' Targets{k}.system '_P' '.mat'], 'GStabP')
-    save(['StabGrids/' Targets{k}.system '_G' '.mat'], 'GStabG')
+    %save(['StabGrids/' Targets{k}.system '_H' '.mat'], 'GStabH')                          % Save the stability grids, if desired
+    %save(['StabGrids/' Targets{k}.system '_P' '.mat'], 'GStabP')
+    %save(['StabGrids/' Targets{k}.system '_G' '.mat'], 'GStabG')
    
     MatOcc = SAG13mat(avect, Rvect);                                                % Initialize occurrence matrix                                                                                  
     
@@ -114,7 +114,7 @@ for k = 1 : length(Targets)                 % Iterate over the number of targets
        end
     end
     k
-    save(['OccGrids/' Targets{k}.system '.mat'], 'GOcc')
+    %save(['OccGrids/' Targets{k}.system '.mat'], 'GOcc')
 end
 
 %% Import Data and Convolve Grids
@@ -137,6 +137,10 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);  % Asign limits for the construction of stability and occurrence grids
     avect = logspace(log10(amin), log10(amax), Na + 1);                      % Define array of semi-major axis points (logarithmically spaced)
     Rvect = logspace(log10(Rmin), log10(Rmax), Nr + 1);                      % Define array of planetary radius points (logarithmically spaced) 
+    
+    %save(['Edges/' Targets{k}.system '_aedges.mat'], 'avect')
+    %save(['Edges/' Targets{k}.system '_Redges.mat'], 'Rvect')
+    
     GStabH = importdata(['StabGrids/',Targets{k}.system,'_H.mat']);          % Import Hill stability (a, R) grid
     GStabP = importdata(['StabGrids/',Targets{k}.system,'_P.mat']);          % Import Petrovich stability (a, R) grid
     GStabG = importdata(['StabGrids/',Targets{k}.system,'_G.mat']);          % Import Giuppone stability (a, R) grid
@@ -148,13 +152,17 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     GSDoSP = GStabP .* GDoS;                                                 % Calculate Petrovich Intersection grid
     GSDoSG = GStabG .* GDoS;                                                 % Calculate Intersection grid
     
-    GScompH = GSDoSH .* GOcc;                                                % Calculate Hill  total grid
+    save(['StabDoSGrids/' Targets{k}.system '_H.mat'], 'GSDoSH')
+    save(['StabDoSGrids/' Targets{k}.system '_P.mat'], 'GSDoSP')
+    save(['StabDoSGrids/' Targets{k}.system '_G.mat'], 'GSDoSG')
+    
+    GScompH = GSDoSH .* GOcc;                                                % Calculate Hill total grid
     GScompP = GSDoSP .* GOcc;                                                % Calculate Petrovich total grid
     GScompG = GSDoSG .* GOcc;                                                % Calculate Giuppone total grid
     
-    %save(['TotalGrids/' Targets{k}.system], 'GScompH')
-    %save(['TotalGrids/' Targets{k}.system], 'GScompP')
-    %save(['TotalGrids/' Targets{k}.system], 'GScompG')
+    save(['StabCompGrids/' Targets{k}.system '_H.mat'], 'GScompH')
+    save(['StabCompGrids/' Targets{k}.system '_P.mat'], 'GScompP')
+    save(['StabCompGrids/' Targets{k}.system '_G.mat'], 'GScompG')
     
     StabDoSH(k) = (sum(sum(GSDoSH)) * ((amax - amin) * (Rmax - Rmin))) / (Na * Nr); % Calculate target's dynamically Hill stable depth-of-search
     StabDoSP(k) = (sum(sum(GSDoSP)) * ((amax - amin) * (Rmax - Rmin))) / (Na * Nr); % Calculate target's dynamically Petrovich stable depth-of-search
@@ -172,5 +180,7 @@ distvect = [Targetsmat.dist];
 atargvect = [Targetsmat.a];
 etargvect = [Targetsmat.e];
 mtargvect = [Targetsmat.pmass];
+
 Res = table(TargetList, distvect', atargvect', etargvect', mtargvect', StabDoSP', StabCompP', StabDoSG' , StabCompG', StabDoSH' , StabCompH');  % Results are stored in Res.mat
+Res.Properties.VariableNames = {'Target' 'Distance' 'sma' 'ecc' 'mp' 'StabDoSP' 'StabCompP' 'StabDoSG' 'StabCompG' 'StabDoSH' 'StabCompH'}
 %save('Res', 'Res')

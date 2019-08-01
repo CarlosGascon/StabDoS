@@ -40,9 +40,9 @@ MatStabP = zeros(length(Mvect), length(avect)); % Initialize Petrovich stability
 MatStabH = zeros(length(Mvect), length(avect)); % Initialize Hill stability matrix 
 MatStabG = zeros(length(Mvect), length(avect)); % Initialize Giuppone stability matrix 
 
-dnsfunP = STABfunP(Target(1).a, Target(1).pmass, Target(1).e, Target(1).smass, Imin, Imax); % Obtain Petrovich rho conditional density function
+dnsfunP = STABfunP(Target(1).a, Target(1).pmass, Target(1).e, Target(1).smass, Imin, Imax); % Obtain Petrovich conditional density function
 dnsfunH = STABfunH(Target(1).a, Target(1).pmass, Target(1).e, Target(1).smass, Imin, Imax); % Obtain Hill C conditional density function
-dnsfunG = STABfunG(Target(1).a, Target(1).pmass, Target(1).e, Target(1).smass, Imin, Imax); % Obtain Giuppone rho conditional density function
+dnsfunG = STABfunG(Target(1).a, Target(1).pmass, Target(1).e, Target(1).smass, Imin, Imax); % Obtain Giuppone conditional density function
 
 
 for j = 1 : length(Mvect)        % Iterate over mass vector  
@@ -52,8 +52,8 @@ for j = 1 : length(Mvect)        % Iterate over mass vector
             MatStabH(j, i) = dnsfunH(Mvect(j), avect(i));   % Directly calculate probability value
             MatStabG(j, i) = dnsfunG(Mvect(j), avect(i));   % Directly calculate probability value
         else
-            MatStabP(j, i) = integral(@(I) dnsfunP(Mvect(j), avect(i), I), Imin, Imax, 'Reltol', 1e-5); % Integrate over the system's inclination
-            MatStabH(j, i) = integral(@(I) dnsfunH(Mvect(j), avect(i), I), Imin, Imax, 'Reltol', 1e-5); % Integrate over the system's inclination
+            MatStabP(j, i) = integral(@(I) dnsfunP(Mvect(j), avect(i), I), Imin, Imax, 'Reltol', 1e-6); % Integrate over the system's inclination
+            MatStabH(j, i) = integral(@(I) dnsfunH(Mvect(j), avect(i), I), Imin, Imax, 'Reltol', 1e-6); % Integrate over the system's inclination
             
             if avect(i) < Target(1).a                                                                   % Check if known planet is outer
                 if Target(1).pmass >= (((1 / 1.46) ^ (7 / 2)) * Target(1).smass - Mvect(j))             % Check necessary condition 
@@ -61,10 +61,10 @@ for j = 1 : length(Mvect)        % Iterate over mass vector
                 else
                     IminMod = asin(Target(1).pmass / (((1 / 1.46) ^ (7 / 2)) * Target(1).smass - Mvect(j)));           % Calculate Modified inclination values
                     ImaxMod = pi - IminMod;                                                                            % Calculate Modified inclination values
-                    MatStabG(j, i) = integral(@(I) dnsfunG(Mvect(j), avect(i), I), IminMod , ImaxMod, 'Reltol', 1e-5); % Integrate over the system's inclination 
+                    MatStabG(j, i) = integral(@(I) dnsfunG(Mvect(j), avect(i), I), IminMod , ImaxMod, 'Reltol', 1e-6); % Integrate over the system's inclination 
                 end                    
             else
-                MatStabG(j, i) = integral(@(I) dnsfunG(Mvect(j), avect(i), I), Imin , Imax, 'Reltol', 1e-5);            % Integrate over the system's inclination
+                MatStabG(j, i) = integral(@(I) dnsfunG(Mvect(j), avect(i), I), Imin , Imax, 'Reltol', 1e-6);            % Integrate over the system's inclination
             end
         end
     end

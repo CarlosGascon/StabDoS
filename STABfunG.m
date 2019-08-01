@@ -19,7 +19,7 @@ function [dnsfun] = STABfunG(a1, mk, e1, ms, Imin, Imax)
 
 
 G = 2.8247664e-07 * (365.2422 ^ 2);   % Gravitational constant [AU^3 / (JupMass * years^2)]
-sig = 0.18;                           % Rayleigh distribution parameter
+sig = 0.1795;                           % Rayleigh distribution parameter
 
 Qk = a1 * (1 + e1);              % Known planet's apocenter
 qk = a1 * (1 - e1);              % Known planet's pericenter

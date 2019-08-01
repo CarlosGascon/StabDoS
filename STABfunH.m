@@ -14,12 +14,12 @@ function [Intdnsfun] = STABfunH(a1, m1, e1, ms, Imin, Imax)
 
 % References:
 
-% - [1] Petit, A. C., Laskar, J., and Boue, G. (2018). Hill stability in the amd framework. Astronomy & Astrophysics,
+% - [1] Petit, A. C., Laskar, J., and Boue, G. (2018). Hill stability in the amd framework. Astronomy & Astrophysics,
 %       617:A93.
 
-G = 2.8245e-07 * (365.256 ^ 2);        % Gravitational constant [AU^3 / (JupMass * years^2)]
+G = 2.8247664e-07 * (365.2422 ^ 2);   % Gravitational constant [AU^3 / (JupMass * years^2)]
 mu = G * ms;                           % System's gravitational parameter
-sig = 0.18;                            % Rayleigh distribution parameter
+sig = 0.1795;                            % Rayleigh distribution parameter
   
 K = @(m1) (1 - sqrt(1 - e1 .^ 2)) .* m1 .* sqrt(mu .* a1); % Known planet's angular momentum deficit contribution
 

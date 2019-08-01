@@ -18,7 +18,7 @@ Cvec = [0.00346053, -0.06613329, 0.48091861, -2.84926757];      % Modified fit C
 Svec = [0.279, 0.50376436, 0.22725968, 0.881];                  % Modified fit S parameters
 Tvec = [0, 1.2298, 8.5520, 11.20898066, Inf];                   % Modified fit T parameters
 
-m = zeros(length(Rp));                % Initialize planetary mass array
+m = zeros(1, length(Rp));                % Initialize planetary mass array
 for i = 1 : length(Rp)
     [N, ~] = histcounts(Rp(i), Tvec); % Identify Mass interval                                
     C = Cvec * N';                    % Obtain corresponding C value
