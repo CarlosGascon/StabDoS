@@ -12,17 +12,24 @@ Calculations are performed using the Main script and following the use instructi
           1. Run Section: Compute (a, R) Stability Grids and Occurrence Grids
           2. Run Section: Import Data and Convolve Grids
 
-Data is stored in the following folders:
+The previously calculated depth-of-search data (for all 213 systems) is stored in the following folders:
 
-- StabGrids: Analytic stability maps obtained using Petrovich's, Giuppone's and the Hill AMD criteria. 
 - DoSGrids: Depth-of-search grids calculated using Garrett's code (https://github.com/dgarrett622/DoS).
 - Datalimits: 4-element array containing the semi-major axis (a) and planetary radius (R) imageable limits [amin, amax, Rmin, Rmax], calculated together with the depth-of-search grids using Garrett's code (https://github.com/dgarrett622/DoS).
+
+When the code is executed, the generated data is stored in the following folders: 
+
 - Edges: Arrays containing the a and R bin edges corresponding to the grids where the calculations are performed.
+- StabGrids: Analytic stability maps obtained using Petrovich's, Giuppone's and the Hill AMD criteria. 
 - StabDoSGrids: Stable depth-of-search grids (calculated as Stab * DoS).
 - OccGrids: Occurrence rates grids calculated using the SAG13 parametric fit, where each bin value is also multiplied by the bin area.
 - StabCompGrids: Stable completeness grids (calculated as StabDoS * Occ).
-- Figures: Generated figures.
+- Res.mat: Dynamically stable depth-of-search and completeness results. 
 
+Additional comments:
+- As an example, the results for the system HD 154345 are given in the corresponding data folders.
+- The generated data used to perform the systems prioritization presented in Gascón et al. 2020 is all available via Cornell eCommons at https://doi.org/10.7298/3c98-m177
+- The Figures folder stores the generated figures (when the corresponding lines are uncommented) and also contains the data associated to Figures 4, 5 and 6 presented in Gascón et al. 2020. 
 
 References: 
 
