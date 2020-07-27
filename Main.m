@@ -81,9 +81,8 @@ GOcc = zeros(Nr, Na);                       % Initialize occurrence matrix
 
 for k = 1 : length(Targets)                 % Iterate over the number of targets
     
-    %Limits = importdata(['Datalimits/',Targets{k}.system,'limits.mat']);            % Import depth-of-search limits previously calculated
-    %amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);         % Asign limits for the construction of stability and occurrence grids
-    amin = 0.9; amax = 23; Rmin = 2.5; Rmax = 17;
+    Limits = importdata(['Datalimits/',Targets{k}.system,'limits.mat']);            % Import depth-of-search limits previously calculated
+    amin = Limits(1); amax = Limits(2); Rmin = Limits(3); Rmax = Limits(4);         % Asign limits for the construction of stability and occurrence grids
     avect = logspace(log10(amin), log10(amax), Na + 1);                             % Define array of semi-major axis points (logarithmically spaced)
     Rvect = logspace(log10(Rmin), log10(Rmax), Nr + 1);                             % Define array of planetary radius points (logarithmically spaced) 
     mvect = MfromR(Rvect);                                                          % Define corresponding array of mass points (logarithmically spaced)
@@ -101,9 +100,9 @@ for k = 1 : length(Targets)                 % Iterate over the number of targets
         end
     end
      
-    %save(['StabGrids/' Targets{k}.system '_H' '.mat'], 'GStabH')                          % Save the stability grids, if desired
-    %save(['StabGrids/' Targets{k}.system '_P' '.mat'], 'GStabP')
-    %save(['StabGrids/' Targets{k}.system '_G' '.mat'], 'GStabG')
+    save(['StabGrids/' Targets{k}.system '_H' '.mat'], 'GStabH')                          % Save the stability grids, if desired
+    save(['StabGrids/' Targets{k}.system '_P' '.mat'], 'GStabP')
+    save(['StabGrids/' Targets{k}.system '_G' '.mat'], 'GStabG')
    
     MatOcc = SAG13mat(avect, Rvect);                                                % Initialize occurrence matrix                                                                                  
     
@@ -113,8 +112,7 @@ for k = 1 : length(Targets)                 % Iterate over the number of targets
                              + MatOcc(j, i + 1) + MatOcc(j + 1, i + 1)) / 4) * ((Rvect(j + 1) - Rvect(j)) * (avect(i + 1) - avect(i)));       
        end
     end
-    k
-    %save(['OccGrids/' Targets{k}.system '.mat'], 'GOcc')
+    save(['OccGrids/' Targets{k}.system '.mat'], 'GOcc')
 end
 
 %% Import Data and Convolve Grids
@@ -138,8 +136,8 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     avect = logspace(log10(amin), log10(amax), Na + 1);                      % Define array of semi-major axis points (logarithmically spaced)
     Rvect = logspace(log10(Rmin), log10(Rmax), Nr + 1);                      % Define array of planetary radius points (logarithmically spaced) 
     
-    %save(['Edges/' Targets{k}.system '_aedges.mat'], 'avect')
-    %save(['Edges/' Targets{k}.system '_Redges.mat'], 'Rvect')
+    save(['Edges/' Targets{k}.system '_aedges.mat'], 'avect')
+    save(['Edges/' Targets{k}.system '_Redges.mat'], 'Rvect')
     
     GStabH = importdata(['StabGrids/',Targets{k}.system,'_H.mat']);          % Import Hill stability (a, R) grid
     GStabP = importdata(['StabGrids/',Targets{k}.system,'_P.mat']);          % Import Petrovich stability (a, R) grid
@@ -171,8 +169,7 @@ for k = 1 : length(Targets)                        % Iterate over the number of 
     StabCompH(k) = sum(sum(GScompH));              % Calculate target's dynamically Hill stable completeness
     StabCompP(k) = sum(sum(GScompP));              % Calculate target's dynamically Petrovich stable completeness
     StabCompG(k) = sum(sum(GScompG));              % Calculate target's dynamically Giuppone stable completeness
-    %generateintersectionplots(avect, Rvect, GStabP, GStabH, GStabG, GOcc, GDoS, GSDoSP, GSDoSH, GSDoSG, Targets{k})  % Generate plots if desired
-    k
+    generateintersectionplots(avect, Rvect, GStabP, GStabH, GStabG, GOcc, GDoS, GSDoSP, GSDoSH, GSDoSG, Targets{k})  % Generate plots if desired
 end
 
 Targetsmat = cell2mat(Targets);
@@ -183,4 +180,4 @@ mtargvect = [Targetsmat.pmass];
 
 Res = table(TargetList, distvect', atargvect', etargvect', mtargvect', StabDoSP', StabCompP', StabDoSG' , StabCompG', StabDoSH' , StabCompH');  % Results are stored in Res.mat
 Res.Properties.VariableNames = {'Target' 'Distance' 'sma' 'ecc' 'mp' 'StabDoSP' 'StabCompP' 'StabDoSG' 'StabCompG' 'StabDoSH' 'StabCompH'}
-%save('Res', 'Res')
+save('Res', 'Res')

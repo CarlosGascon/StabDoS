@@ -31,6 +31,7 @@ hold on
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabH, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
+contour3(log10(avect), log10(mvect), MatStabH, [0.01 0.01],'--', 'Color', [180    180    180] / 255,  'Linewidth', 1.5)
 %print(['Figures/', Target.system, '_massHanalytic'], '-depsc')
 
 figure()
@@ -58,8 +59,9 @@ hold on
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabP, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
-
+contour3(log10(avect), log10(mvect), MatStabP, [0.01 0.01],'--', 'Color', [180    180    180] / 255,  'Linewidth', 1.5)
 %print(['Figures/', Target.system, '_massPanalytic'], '-depsc')
+
 figure()
 
 imagesc(log10([avect(1) avect(end)]), log10([mvect(1) mvect(end)]), MatStabG)
@@ -85,6 +87,7 @@ hold on
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], '+w', 'MarkerSize', 35, 'Linewidth', 1)
 plot3([log10(a1) log10(a1)], log10([m1 m1]), [0 0], 'sw', 'MarkerSize', 10, 'Linewidth', 1.75)
 contour3(log10(avect), log10(mvect), MatStabG, [0.95 0.95],'--', 'Color', [162    82    45] / 255,  'Linewidth', 2)
+contour3(log10(avect), log10(mvect), MatStabG, [0.01 0.01],'--', 'Color', [180    180    180] / 255,  'Linewidth', 1.5)
 %print(['Figures/', Target.system, '_massGanalytic'], '-depsc')
 
 end

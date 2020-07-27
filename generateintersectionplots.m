@@ -120,13 +120,12 @@ view(2);
 
 %print(['Figures/', Target.system, '_dos'], '-depsc')
 
-
+%{
 figure
 
 colormap(cm)
 
 contourf(X, Y, GOcc, 15);
-set(gca, 'YScale', 'log', 'XScale', 'log');
 pbaspect([1.20, 1, 1])
 grid on; grid minor;
 cbar = colorbar();
@@ -139,7 +138,7 @@ ylabel('$R \; (R_{\oplus})$','Interpreter','latex');
 y = ylabel(cbar, 'Occurrence Rate','Interpreter','latex', 'Rotation', 270, 'Fontsize', 14);
 y.Position(1) = y.Position(1) + 1.3;
 %print(['Figures/', Target.system, '_occ'], '-depsc')
-
+%}
 
 figure
 GtotH(GtotH == 0) = nan;
